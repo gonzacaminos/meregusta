@@ -14,7 +14,7 @@
 
 			var parametros = { "cantidad": cantidad };
 
-			$.ajax({
+			/*$.ajax({
 			  url: "write.php",
 			  type: "POST",
 			  data: parametros
@@ -22,14 +22,25 @@
 			}).done(function() {
 				console.log(likes);
 
-			});
+			});*/
+
+            $.ajax({
+              url: "write.php",
+              type: "GET",
+              data: "likes"
+
+            }).done(function() {
+                console.log(likes);
+
+            });
+
 
 		  };
 
 
 		$(document).ready(function(){
 
-		  	//setInterval(getLikes, 1000);
+		  	setInterval(getLikes, 10);
 
 		});
 

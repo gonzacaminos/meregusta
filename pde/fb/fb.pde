@@ -1,23 +1,25 @@
-import processing.net.*;
 import processing.serial.*;
-import java.io.*;
+import cc.arduino.*;
 
+Arduino arduino;
 String[] lines = new String[2] ;
-int prev,ult, dif;
+int prev,ult, dif, pinMG, pinNMG;
 String modo;
-Serial myPort;
 
 void setup() {
-  size(800, 800);
-  background(50);
-  fill(200);
-  modo = "web";
+
+  size(300, 300);
+  modo = "txt";
   prev = 0;  
-  frameRate(10);
   lines[0] = "0";
   lines[1] = "0";
-  myPort = new Serial(this, "COM4", 9600);
-  myPort.bufferUntil('\n');
+  pinMG = 13;
+  pinNMG = 12;
+  println(Arduino.list());
+  arduino = new Arduino(this, Arduino.list()[0], 57600);
+  arduino.pinMode(pinMG, Arduino.OUTPUT);
+  arduino.pinMode(pinNMG, Arduino.OUTPUT);
+
 
 }
 
@@ -39,30 +41,31 @@ void draw() {
 
   if(  dif > 0 ) { //Positivo
   
-    println("-------------------------------------------");
-    
+  
+    arduino.digitalWrite(12, Arduino.LOW);
+    arduino.digitalWrite(13, Arduino.HIGH);
+    delay(5000);
+    arduino.digitalWrite(13, Arduino.LOW);
+    println("-------------------------------------------");    
     rect(random(0,width), random(0,height),50,50);
     println("ult " + ult);
     println("prev" +prev);
 
-     myPort.write(dif);
-
     
   } else if (dif<0) { // Negativo
-      
-    //fill(255,0,0);
+        
+    arduino.digitalWrite(13, Arduino.LOW);
+    arduino.digitalWrite(12, Arduino.HIGH);
+    delay(5000);
+    arduino.digitalWrite(12, Arduino.LOW);
     ellipse(random(0,width), random(0,height),50,50);
     println("ult " + ult);
     println("prev" +prev);
-    myPort.write(dif);
-    println(dif);
 
   }
   
   prev = ult;
-  
-  
-
 
 }
+
 
