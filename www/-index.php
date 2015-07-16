@@ -37,12 +37,33 @@
 
 
 		  };
+                      //$.get( "write.ph", { name: "John", time: "2pm" } )
+
+          var jqxhr = $.get( "write.php", { likes : "" } )
+              //alert( "success" + data );
+            
+              .done(function(data) {
+                alert( "second success " + data );
+              })
+              .fail(function() {
+                alert( "error" );
+              })
+              .always(function() {
+                //alert( "finished" );
+              });
+             
+            // Perform other work here ...
+             
+            // Set another completion function for the request above
+            jqxhr.always(function() {
+              alert( "second finished" );
+        });
 
 
 		$(document).ready(function(){
 
 		  	//setInterval(getLikes, 10);
-
+            getLikes(10);
 		});
 
 	    </script>

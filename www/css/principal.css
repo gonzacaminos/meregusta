@@ -4,6 +4,12 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+.barra-mg { display: none; }
+
+.completarBarra { -webkit-transition: width 2s; /* Safari */
+    transition: width 2s;  width: 100% !important;  
+
+}
 body {
     width: 100%;
     height: 100%;

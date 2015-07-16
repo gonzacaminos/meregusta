@@ -33,7 +33,7 @@
 			$obb = $response->getGraphObject()->getProperty('likes');
 
 			echo $obb;
-
+			$_GET['likes'] = $obb;
 			$myfile = fopen("../data.txt", "w+") or die("Unable to open file!");
 			fwrite($myfile, $obb);
 
