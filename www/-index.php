@@ -4,6 +4,7 @@
     <head>
     	<title></title>
     	<script src="js/jquery-1.11.2.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     </head>
     <body>
 
@@ -26,8 +27,8 @@
 
             $.ajax({
               url: "write.php",
-              type: "GET",
-              data: "likes"
+              type: "POST",
+              data: parametros
 
             }).done(function() {
                 console.log(likes);
@@ -40,15 +41,15 @@
 
 		$(document).ready(function(){
 
-		  	setInterval(getLikes, 10);
+		  	//setInterval(getLikes, 10);
 
 		});
 
 	    </script>
 
 
-	    <button onclick="getLikes(-5)">-5</button>
-	    <button onclick="getLikes(5)">+5</button>
+	    <button class="btn btn-primary" onclick="getLikes(-5)">-5</button>
+	    <button class="btn btn-primary" onclick="getLikes(5)">+5</button>
 
 	    <h2 class="texto"></h2>
 
